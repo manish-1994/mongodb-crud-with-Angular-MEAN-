@@ -1,0 +1,17 @@
+mat-card{
+  width:100%;
+  background-color: darkgrey;
+}
+
+mat-form-field{
+  width:100%;
+  color: white;
+}
+
+mat-label{
+  color: white;
+}
+
+button{
+  margin-right: 1rem;
+}

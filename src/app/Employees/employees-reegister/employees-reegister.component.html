@@ -1,0 +1,27 @@
+<mat-card >
+  <form (ngSubmit)="onSubmit(postForm)" #postForm = "ngForm">
+    <input type="hidden" name="id" #Id = "ngModel" [(ngModel)]="id">
+    <mat-form-field >
+      <mat-label>Name</mat-label>
+      <input matInput  type="text" name="name" #Name = "ngModel" [(ngModel)]="name" required>
+      <mat-error *ngIf="Name.invalid">Please fill out the NAME field </mat-error>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-label>Position</mat-label>
+      <input matInput type="text" name="position" #Position = "ngModel" [(ngModel)]="position" required>
+      <mat-error *ngIf="Position.invalid">Please fill out the POSITION field </mat-error>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-label>Office</mat-label>
+      <input matInput type="text" name="office" #Office = "ngModel" [(ngModel)]="office" required>
+      <mat-error *ngIf="Office.invalid">Please fill out the OFFICE field </mat-error>
+    </mat-form-field><br>
+    <mat-form-field>
+      <mat-label>Salary</mat-label>
+      <input matInput type="number" name="salary" #Salary = "ngModel" [(ngModel)]="salary" required>
+      <mat-error *ngIf="Salary.invalid">Please fill out the SALARY field </mat-error>
+    </mat-form-field><br><br>
+    <button mat-raised-button type="submit" [disabled]="postForm.invalid" color="primary">Save</button>
+    <button mat-raised-button type="button" (click)="onReset(postForm)">Reset</button>
+  </form>
+</mat-card>

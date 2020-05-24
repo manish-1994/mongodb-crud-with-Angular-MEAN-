@@ -1,0 +1,43 @@
+
+<p *ngIf="employer?.length <= 0"> No employees added yet!</p>
+<p *ngIf="employer?.length > 0"> Employees <span style="background-color: black;color: aqua">List</span> </p>
+
+<mat-card *ngFor="let c of employer">
+  name:{{c.name}}<br>
+  position:{{c.position}}<br>
+  office:{{c.office}}<br>
+  salary:{{c.salary}}<br><br>
+  <mat-divider></mat-divider>
+  <div align="right">
+  <button class="button" mat-flat-button (click)="onEdit($event,c)"  color="primary"><mat-icon>edit</mat-icon></button>
+    <button class="button" (click)="onDelete(c._id)"  mat-flat-button color="warn"><mat-icon>delete</mat-icon></button>
+    <mat-card *ngIf="compressed && employee._id == c._id" >
+      <form (ngSubmit)="onUpdate(postForm,c._id)" #postForm = "ngForm">
+        <input #Id="ngModel" [(ngModel)]="id" name="id" type="hidden">
+        <mat-form-field >
+          <mat-label>Name</mat-label>
+          <input matInput  type="text" name="name" #Name = "ngModel" [(ngModel)]="name" required>
+          <mat-error *ngIf="Name.invalid">Please fill out the NAME field </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-label>Position</mat-label>
+          <input matInput type="text" name="position" #Position = "ngModel" [(ngModel)]="position" required>
+          <mat-error *ngIf="Position.invalid">Please fill out the POSITION field </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-label>Office</mat-label>
+          <input matInput type="text" name="office" #Office = "ngModel" [(ngModel)]="offices" required>
+          <mat-error *ngIf="Office.invalid">Please fill out the OFFICE field </mat-error>
+        </mat-form-field><br>
+        <mat-form-field>
+          <mat-label>Salary</mat-label>
+          <input matInput type="number" name="salary" #Salary = "ngModel" [(ngModel)]="salarys" required>
+          <mat-error *ngIf="Salary.invalid">Please fill out the SALARY field </mat-error>
+        </mat-form-field><br><br>
+        <button mat-raised-button type="submit"  [disabled]="postForm.invalid" color="primary">Update</button>
+        <button mat-raised-button type="button" (click)="onReset(postForm)">Reset</button>
+        <button mat-raised-button type="button" color="accent" (click)="closed(postForm)">Close</button>
+      </form>
+    </mat-card>
+  </div>
+</mat-card>
